@@ -9,10 +9,10 @@ load_dotenv(dotenv_path=env_path)
 class Settings:
     PROJECT_NAME:str = "REGISTRA-FACIL-API"
     PROJECT_VERSION:str = "1.0"
-    USER: str = "apisga"
-    PASSWORD: str = "7DEmfDsQ8VBtYb6GFtV3"
+    USER: str = "ibsmoto"
+    PASSWORD: str = "s1ST3M0S2023*"
     HOST: str = "localhost"
-    DATABASE: str = "sga"
+    DATABASE: str = "qafx088"
     DATABASE_URL: str = f"mysql+mysqlconnector://{USER}:{quote(PASSWORD)}@{HOST}/{DATABASE}"
 
     SMTP_HOST: str = "smtp.gmail.com"
