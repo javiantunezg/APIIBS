@@ -25,9 +25,9 @@ def eventos(db:Session = Depends(get_db)):
     """
     eventos = evento.get_eventos_basic(db)
     # si la fecha del evento es anterior a la actual el valor isPast será True
-    for evento in eventos:
-        if evento.fecha_evento < datetime.now():
-            evento.isPast = True
+    for evento_base in eventos:
+        if evento_base.fecha_evento < datetime.now():
+            evento_base.isPast = True
         else:
-            evento.isPast = False
+            evento_base.isPast = False
     return eventos
