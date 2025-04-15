@@ -1,5 +1,5 @@
 from fastapi import APIRouter,Depends,status 
-from app.schemas import sch_getBasicEvento
+from app.schemas import sch_getBasicEvento, datetime
 from app.db.database import get_db
 from sqlalchemy.orm import Session 
 from typing import List
@@ -29,4 +29,10 @@ def eventos(db:Session = Depends(get_db)):
             # List[models.Evento] -> Lista de eventos.
     """
     eventos = evento.get_eventos_basic(db)
+    # si la fecha del evento es anterior a la actual el valor isPast será True
+    for evento in eventos:
+        if evento.fecha_evento < datetime.now():
+            evento.isPast = True
+        else:
+            evento.isPast = False
     return eventos

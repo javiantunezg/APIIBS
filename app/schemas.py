@@ -90,6 +90,7 @@ class sch_getBasicEvento(BaseModel):
     imagen: str
     poblacion: str
     fecha_evento: datetime
+    isPast: bool = False
     class Config:
         from_attributes = True
 
