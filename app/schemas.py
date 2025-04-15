@@ -89,7 +89,7 @@ class sch_getBasicEvento(BaseModel):
     nombre: str
     imagen: str
     poblacion: str
-    fecha: datetime
+    fecha_evento: datetime
     class Config:
         from_attributes = True
 
