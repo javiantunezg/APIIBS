@@ -18,15 +18,15 @@ router = APIRouter(
 #     return data
 
 @router.get('/',status_code=status.HTTP_201_CREATED)
-# def newapiuser(usuario:createApiUser,db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
-def eventos(evento:sch_getBasicEvento,db:Session = Depends(get_db)):
-    print('routes evento')    
+# def eventos(db:Session = Depends(get_db),current_user: User = Depends(get_current_user)):
+def eventos(db:Session = Depends(get_db)):
     """
-    ## Descripción:
-        · Este endpoint permite obtener todos los eventos.
-    ## Retorna:
-        · None
-    """    
-    
-    evento.get_eventos(db)
-    return {"respuesta":"Usuario creado satisfactoriamente!!"}
+        · Descripción:
+            # Función que obtiene todos los eventos de la base de datos.
+        · Parámetros:
+            # db: Session -> Sesión de la base de datos.
+        · Retorna:
+            # List[models.Evento] -> Lista de eventos.
+    """
+    eventos = evento.get_eventos_basic(db)
+    return eventos
