@@ -91,7 +91,7 @@ class sch_getBasicEvento(BaseModel):
     poblacion: str
     fecha: datetime
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # -------------------------------- ENDS --------------------------------
 # -------------------------------- Evento --------------------------------
