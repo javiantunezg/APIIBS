@@ -6,38 +6,6 @@ from datetime import datetime, date
 
 
 
-#  -------------------------------- User Begin --------------------------------
-class sch_createApiUser(BaseModel):
-    username: str
-    passwordHash: str
-    idUserType: int
-    createdBy: int
-
-class createUser(BaseModel):
-    username: str
-    passwordHash: str
-    sexo: str
-    idUserType: int
-    createdBy: int
-    firstName: str
-    lastName: str
-    dni: str
-    address: str
-    city: str
-    postalCode: str
-    state: str
-    country: str
-    birthDate: date
-    email: str
-    phone: str
-    isActive: bool
-
-class User(BaseModel):
-    username: str
-    passwordHash: Optional[str] = None
-#  -------------------------------- User END --------------------------------
-
-
 
 
 #  -------------------------------- Login & Tokens Begin --------------------------------

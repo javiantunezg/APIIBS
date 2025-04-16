@@ -1,7 +1,7 @@
 from fastapi import FastAPI, APIRouter
 import uvicorn 
 from app.db.database import Base,engine
-from app.routers import user,auth, checks, evento
+from app.routers import auth, checks, evento
 from fastapi.middleware.cors import CORSMiddleware
 from middlewares import token_middleware
 
@@ -13,7 +13,6 @@ app.add_middleware(token_middleware.TokenMiddleware)
 # Crear un enrutador principal con el prefijo `/v1`
 api_v1_router = APIRouter(prefix="/v1")
 
-api_v1_router.include_router(user.router)
 api_v1_router.include_router(auth.router)
 api_v1_router.include_router(checks.router)
 api_v1_router.include_router(evento.router)
