@@ -7,6 +7,41 @@ from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
 
 
+# MODELOS PARA USUARIOS
+
+
+class User(Base):
+    __tablename__ = "usuarios"
+
+    id_usuario = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String(60), unique=True, nullable=False)
+    nombre = Column(String(30), nullable=False)
+    apellidos = Column(String(50), nullable=False)
+    sexo = Column(String(8), nullable=False)
+    dni = Column(String(10), unique=True)
+    contrasena = Column(String(100), nullable=False)
+    fecha_nacimiento = Column(Date, nullable=False)
+    estado = Column(String(15), nullable=False)
+    dorsal = Column(Integer, unique=True)
+    hobbies = Column(Text, nullable=False)
+    profesion = Column(Text, nullable=False)
+    telefono = Column(String(20), nullable=False)
+    direccion = Column(String(100), nullable=False)
+    poblacion = Column(String(50), nullable=False)
+    cod_postal = Column(String(15), nullable=False)
+    provincia = Column(String(50), nullable=False)
+    pais = Column(String(30), nullable=False)
+    version = Column(Integer, nullable=False)
+    apellido2 = Column(String(50), nullable=False)
+    piloto = Column(Boolean, nullable=False, default=True)
+    talla_camiseta = Column(String(3), nullable=False)
+    marca_telefono = Column(String(50))
+    modelo_telefono = Column(String(50))
+    # created_at = Column(TIMESTAMP, server_default=func.now())
+    modified_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
+    rol = Column(String(50), default='usuario')
+
+# MODELOS PARA EVENTOS
 class Evento(Base):
     __tablename__ = "eventos"
 

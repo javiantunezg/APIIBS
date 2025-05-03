@@ -3,12 +3,13 @@ from app.db import models
 from fastapi import HTTPException,status 
 from app.hashing import Hash
 from app.token import create_access_token
+from datetime import datetime
 
 
 def auth_user(usuario,db:Session):
 
     print (usuario.username,usuario.password)
-    user = db.query(models.ApiUser).filter(models.ApiUser.username==usuario.username).first()
+    user = db.query(models.User).filter(models.User.email==usuario.username).first()
     print('1')
 
     if not user:
@@ -18,18 +19,19 @@ def auth_user(usuario,db:Session):
             detail=f"""No existe el usuario con el username {usuario.username} por lo tanto no se realiza el login"""
         )
     print('2')
-    print(user.passwordHash)
-    if not user.passwordHash:
-        if not Hash.verify_password(usuario.password, user.password):
-            print('5')
-            raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"""Contraseña incorrecta ! """
-                )
+    print(user.contrasena)
+    if not Hash.verify_password_md5(usuario.password, user.contrasena):
+        print('5')
+        raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"""Contraseña incorrecta ! """
+            )
         
     print('3')
-    access_token = create_access_token(
-        data={"sub": usuario.username}
-    )
+    payload = {
+        "sub": usuario.username,  # Puedes poner cualquier dato relevante
+        "rol": user.rol  # Incluye el rol del usuario
+    }
+    access_token = create_access_token(data=payload)
     return {"access_token": access_token, "token_type": "bearer"}
 
