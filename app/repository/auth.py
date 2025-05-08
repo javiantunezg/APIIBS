@@ -29,8 +29,9 @@ def auth_user(usuario,db:Session):
         
     print('3')
     payload = {
-        "sub": usuario.username,  # Puedes poner cualquier dato relevante
-        "rol": user.rol  # Incluye el rol del usuario
+        "sub": usuario.username,
+        "rol": user.rol,
+        "id_usuario": user.id_usuario  # ✅ Añadimos el ID del usuario
     }
     access_token = create_access_token(data=payload)
     return {"access_token": access_token, "token_type": "bearer"}

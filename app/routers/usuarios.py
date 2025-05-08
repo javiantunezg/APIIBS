@@ -17,6 +17,9 @@ def obtener_usuarios(db: Session = Depends(get_db), current_user: User = Depends
 # 5. Obtener usuario por ID
 @router.get("/{id_usuario}", response_model=UserOut)
 def obtener_usuario_por_id(id_usuario: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    if id_usuario != current_user.id_usuario and current_user.rol != "admin":
+        raise HTTPException(status_code=403, detail="No tienes permisos para acceder a este usuario")
+
     usuario = db.query(User).filter(User.id_usuario == id_usuario).first()
     if not usuario:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")

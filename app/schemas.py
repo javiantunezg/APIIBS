@@ -25,6 +25,7 @@ class UsuarioBase(BaseModel):
 class TokenData(BaseModel):
     sub: str
     rol: str
+    id_usuario: int
 
 class UsuarioCrear(UsuarioBase):
     pass
@@ -51,7 +52,7 @@ class UserOut(BaseModel):
     apellidos: str
     sexo: str
     dni: Optional[str] = None  # Puede ser None
-    fecha_nacimiento: date
+    fecha_nacimiento: Optional[date] = None
     estado: str
     dorsal: Optional[int] = None  # Puede ser None
     hobbies: str

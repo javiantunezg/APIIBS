@@ -41,7 +41,7 @@ def verify_token(token:str) -> TokenData:
         
         # Retornamos un objeto User con el payload decodificado (incluyendo el rol)
         # return TokenData(**payload)
-        return TokenData(sub=payload["sub"], rol=payload["rol"])
+        return TokenData(sub=payload["sub"], rol=payload["rol"], id_usuario=payload["id_usuario"])
     
     except jwt.ExpiredSignatureError:
         raise HTTPException(
